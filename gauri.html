@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Gauri ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+html{scroll-behavior:smooth;}
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(120deg,#ff758c,#ff7eb3);
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
+
+/* Sections */
+section{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+}
+section.show{opacity:1;transform:translateY(0);}
+
+/* Buttons */
+a{
+text-decoration:none;
+background:white;
+color:#ff4d6d;
+padding:15px 40px;
+border-radius:30px;
+margin:15px;
+font-size:1.2rem;
+cursor:pointer;
+transition:0.3s;
+}
+a:hover{
+transform:translateY(-4px);
+box-shadow:0 10px 25px rgba(255,255,255,0.35);
+}
+
+/* Cute heart */
+.heart{
+font-size:4rem;
+cursor:pointer;
+animation:cuteBeat 1.5s infinite;
+}
+@keyframes cuteBeat{
+0%,100%{transform:scale(1);}
+50%{transform:scale(1.15) rotate(-3deg);}
+}
+
+/* Headings */
+h1{
+background:linear-gradient(90deg,#fff,#ffd6e0,#fff);
+-webkit-background-clip:text;
+color:transparent;
+animation:shine 3s infinite;
+}
+@keyframes shine{to{background-position:200%;}}
+
+/* Type text */
+.type{
+font-size:1.4rem;
+max-width:700px;
+min-height:80px;
+text-shadow:0 0 10px rgba(255,255,255,0.6);
+}
+
+/* Secret */
+#secret{
+display:none;
+margin-top:15px;
+animation:fadeIn 1s;
+}
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(10px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+/* Floating hearts */
+.cute-heart{
+position:fixed;
+bottom:-30px;
+font-size:18px;
+animation:floatCute 12s linear infinite;
+opacity:0.5;
+pointer-events:none;
+}
+@keyframes floatCute{
+to{transform:translateY(-120vh);opacity:0;}
+}
+
+/* Chat */
+.chat-box{
+width:90%;
+max-width:420px;
+background:rgba(255,255,255,0.2);
+border-radius:20px;
+padding:15px;
+display:flex;
+flex-direction:column;
+gap:10px;
+backdrop-filter:blur(10px);
+}
+.msg{
+max-width:75%;
+padding:10px 15px;
+border-radius:18px;
+font-size:1rem;
+animation:pop 0.4s;
+}
+.left{
+align-self:flex-start;
+background:white;
+color:#ff4d6d;
+border-bottom-left-radius:5px;
+}
+.right{
+align-self:flex-end;
+background:#ff4d6d;
+color:white;
+border-bottom-right-radius:5px;
+}
+@keyframes pop{
+from{transform:scale(0.8);opacity:0;}
+to{transform:scale(1);opacity:1;}
+}
+
+/* Celebration */
+.fire{
+position:absolute;
+font-size:20px;
+animation:fall 5s linear infinite;
+}
+@keyframes fall{to{transform:translateY(120vh);}}
+</style>
+</head>
+
+<body>
+
+<!-- 🎶 MUSIC -->
+<audio id="bgMusic" autoplay loop muted>
+  <source src="Mohabbatein.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ❤️ HOME -->
+<section id="home" class="show">
+<div class="heart" onclick="secret()">❤️</div>
+<h1>Hey Gauri…</h1>
+<div class="type" id="t1"></div>
+<p id="secret">👀 Secret: I Love You soooo muchhh, Mere Gulab Jamun 🍡......Tu boht jyada cute hai or jab smile krti hai toh 100x cute ho jati hai 🐼</p>
+<a href="#story">Aage Chalo 🌙</a>
+</section>
+
+<!-- 🌙 STORY -->
+<section id="story">
+<h1>Ek Khoobsurat Ittefaq ✨</h1>
+<div class="type" id="t2"></div>
+<a href="#chat">Aage 💬</a>
+</section>
+
+<!-- 💬 CHAT -->
+<section id="chat">
+<h1>Thodi Si Baatein 💬</h1>
+<div class="chat-box" id="chatBox"></div>
+<a onclick="startChat()">Read Messages 💖</a>
+<a href="#feelings">Next ❤️</a>
+</section>
+
+<!-- 💌 FEELINGS -->
+<section id="feelings">
+<h1>Bas Thoda Sa Intezaar ⏳</h1>
+<h2 id="count"></h2>
+<a href="#proposal">Ready 💍</a>
+</section>
+
+<!-- 💍 PROPOSAL -->
+<section id="proposal">
+<h1>Gauri ❤️</h1>
+<h2 id="finalText">Will you be mine… forever?</h2>
+<a onclick="celebrate()">YES 😍</a>
+</section>
+
+<script>
+/* TYPEWRITER */
+function type(id,text){
+let i=0,el=document.getElementById(id);
+let interval=setInterval(()=>{
+if(i<text.length){el.innerHTML+=text.charAt(i);i++;}
+else clearInterval(interval);
+},50);
+}
+type("t1","Yeh website sirf ek page nahi… yeh mera dil hai jo tumhare naam likha hai ❤️....now click this bada wala heart bebu 🫶");
+type("t2","Pta nahi kaise hua but hogya...tujhse pyaar🥹...... phle dost firr best friend nd finally ek din forevers 💖.......some stories are written in heaven or apni toh khud Radha Krishna ne likhi hai tbhi toh sbse jyada unique or special hai 💗");
+
+/* MUSIC + SECRET */
+function secret(){
+document.getElementById("secret").style.display="block";
+let m=document.getElementById("bgMusic");
+m.muted=false;m.play();
+}
+
+/* COUNTDOWN */
+let t=10;
+setInterval(()=>{
+if(t>=0){document.getElementById("count").innerHTML="Proposal in "+t+" seconds ❤️";t--;}
+},1000);
+
+/* SCROLL FADE */
+document.addEventListener("scroll",()=>{
+document.querySelectorAll("section").forEach(sec=>{
+if(sec.getBoundingClientRect().top<window.innerHeight-100)
+sec.classList.add("show");
+});
+});
+
+/* FLOATING HEARTS */
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="cute-heart";
+h.innerHTML=Math.random()>0.5?"💗":"💖";
+h.style.left=Math.random()*100+"vw";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),12000);
+},900);
+
+/* CHAT */
+const messages=[
+{text:"Hey… tumhe pata hai? 💭",side:"left"},
+{text:"Kya? 😊",side:"right"},
+{text:"Tum meri har khushi ki wajah ho 💖",side:"left"},
+{text:"Aww 🙈",side:"right"},
+{text:"Isiliye aaj yeh pooch raha hoon… 💍",side:"left"}
+];
+function startChat(){
+let box=document.getElementById("chatBox");
+box.innerHTML="";let i=0;
+let interval=setInterval(()=>{
+if(i<messages.length){
+let m=document.createElement("div");
+m.className="msg "+messages[i].side;
+m.innerText=messages[i].text;
+box.appendChild(m);
+box.scrollTop=box.scrollHeight;
+i++;
+}else clearInterval(interval);
+},900);
+}
+
+/* CELEBRATION */
+function celebrate(){
+document.getElementById("finalText").innerHTML="hihihi😁....I Love you bebu 💖....forever till last breath of my life🥹 ";
+for(let i=0;i<120;i++){
+let f=document.createElement("div");
+f.className="fire";
+f.innerHTML="💗";
+f.style.left=Math.random()*100+"vw";
+f.style.top="-10px";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),5000);
+}
+}
+</script>
+
+</body>
+</html>
